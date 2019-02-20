@@ -1,11 +1,13 @@
 package org.fasttrackit;
 
+import org.fasttrackit.pageobjects.ProductGrid;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 import java.util.Set;
@@ -88,6 +90,9 @@ public class ShoppingCartTest {
         System.out.println("Opened homepage");
 
         String keyword = "vase";
+        header.search(keyword);
+
+        ProductGrid productGrid = PageFactory.initElements(driver, ProductGrid.class);
 
         driver.findElement(By.className("input-text")).sendKeys("vase" + Keys.ENTER);
         //driver.findElement(By.partialLinkText("WOMEN")).click();

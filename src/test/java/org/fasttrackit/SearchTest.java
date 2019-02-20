@@ -1,5 +1,7 @@
 package org.fasttrackit;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+import org.fasttrackit.pageobjects.Header;
 import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
@@ -8,6 +10,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
@@ -23,7 +26,13 @@ public class SearchTest {
         driver.findElement(By.className("input-text")).sendKeys("vase" + Keys.ENTER);
         //driver.findElement(By.partialLinkText("WOMEN")).click();
 
+        Header header = PageFactory.initElements(driver, Header.class);
+
+
         String keyword = "vase";
+        header.getSearchField().sendKeys(keyword + Keys.ENTER);
+        System.out.println("Pressed enter in search field.");
+
         List<WebElement> productNameContainers =
                 driver.findElements(By.cssSelector(".product-name>a"));
 
